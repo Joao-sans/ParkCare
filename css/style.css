@@ -1,0 +1,70 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #F2F2F2;
+      color: #2F5233;
+    }
+    header {
+      background-image: url('../imagens/Fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #2F5233;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      margin-bottom: 20px;
+      color: #2F5233;
+    }
+    footer {
+      text-align: center;
+      background-color: #A8D5BA;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .highlight-hover span {
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .highlight-hover:hover span {
+      color: #89b89c;
+      transform: scale(1.2);
+    }
+    .highlight-hover {
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
