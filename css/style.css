@@ -1,70 +1,185 @@
+/* Reset e configurações globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background-color: #F2F2F2;
-      color: #2F5233;
-    }
-    header {
-      background-image: url('../imagens/Fundo.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 3rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background-color: #2F5233;
-      padding: 10px 0;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    section h2 {
-      margin-bottom: 20px;
-      color: #2F5233;
-    }
-    footer {
-      text-align: center;
-      background-color: #A8D5BA;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    .highlight-hover span {
-      display: inline-block;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    
-    .highlight-hover:hover span {
-      color: #89b89c;
-      transform: scale(1.2);
-    }
-    .highlight-hover {
-      color: #ffffff;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F2F2F2;
+  color: #2F5233;
+}
+
+/* Cabeçalho */
+header {
+  background-image: url('../imagens/Fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: clamp(30px, 5vw, 60px) clamp(10px, 3vw, 20px);
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(24px, 6vw, 48px);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+header p {
+  font-size: clamp(14px, 3vw, 20px);
+  margin-top: clamp(8px, 1.5vw, 10px);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Botão de menu */
+#menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  z-index: 1001;
+}
+
+/* Navegação padrão (telas grandes) */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 40px);
+  background-color: #2F5233;
+  padding: clamp(6px, 1.5vw, 10px) 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Menu de navegação responsivo */
+.menu-links {
+  display: flex;
+  gap: clamp(16px, 4vw, 40px);
+}
+
+/* Sessões */
+section {
+  padding: clamp(20px, 4vw, 40px) clamp(10px, 3vw, 20px);
+  max-width: 1000px;
+  margin: auto;
+}
+
+section h2 {
+  margin-bottom: clamp(12px, 3vw, 20px);
+  color: #2F5233;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  background-color: #A8D5BA;
+  padding: clamp(10px, 3vw, 20px);
+  margin-top: clamp(20px, 5vw, 40px);
+}
+
+/* Efeito de destaque nas letras */
+.highlight-hover span {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.highlight-hover:hover span {
+  color: #89b89c;
+  transform: scale(1.2);
+}
+
+.highlight-hover {
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Sublinhado animado nos links */
+nav a span {
+  position: relative;
+  color: #fff;
+  padding: 4px 8px;
+  transition: color 0.3s ease;
+}
+
+nav a span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #A8D5BA;
+  transition: width 0.3s ease;
+}
+
+nav a:hover span::after,
+nav a.active span::after {
+  width: 100%;
+}
+
+nav a.active span {
+  color: #A8D5BA;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  #menu-toggle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .menu-links {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #2F5233;
+    width: 100%;
+    padding: 10px;
+    display: none;
+  }
+
+  .menu-links.show {
+    display: flex;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  header h1 {
+    font-size: clamp(24px, 6vw, 42px);
+  }
+
+  section {
+    padding: 24px 16px;
+  }
+
+  footer {
+    padding: 16px 12px;
+    font-size: 15px;
+  }
+}
