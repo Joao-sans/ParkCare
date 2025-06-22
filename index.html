@@ -8,28 +8,29 @@
   <!-- Fonte do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Link para seu CSS (separado) -->
+  <!-- Link para CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<script src="js/script.js"></script>
 <body>
 
   <!-- Cabeçalho com imagem de fundo -->
   <header>
     <h1>
-      <span class="highlight-hover" data-animated-text="Park Care"></span>
+      <span class="highlight-hover" data-animated-text="Park Care">Park Care</span>
     </h1>
-    <p>Transformando parques e plantando o futuro.</p>
+    <p>Em busca de um parque melhor</p>
   </header>
 
   <!-- Navegação principal -->
   <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#impacto">Impacto</a>
-    <a href="#funciona">Como Funciona</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
+  <button id="menu-toggle" aria-label="Abrir menu">☰</button>
+<div class="menu-links">
+  <a href="#sobre"><span>Sobre</span></a>
+  <a href="#impacto"><span>Impacto</span></a>
+  <a href="#funciona"><span>Como Funciona</span></a>
+  <a href="#contato"><span>Contato</span></a>
+</div>
+</nav>
   <!-- Seção Sobre -->
   <section id="sobre">
     <h2>Sobre o Projeto</h2>
@@ -68,7 +69,7 @@
   <footer>
     <p>&copy; 2025 Verde Vivo. Todos os direitos reservados.</p>
   </footer>
-
+  <!-- Link para JS -->
   <script src="js/script.js"></script>
 </body>
 </html>
