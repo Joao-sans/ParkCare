@@ -24,14 +24,18 @@ header {
   padding: clamp(30px, 5vw, 60px) clamp(10px, 3vw, 20px);
   text-align: center;
 }
-
+@media (max-width: 600px) {
+  header {
+    padding: 60px 12px;
+  }
+}
 header h1 {
-  font-size: clamp(24px, 6vw, 48px);
+  font-size: clamp(30px, 8vw, 54px);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 header p {
-  font-size: clamp(14px, 3vw, 20px);
+  font-size: clamp(20px, 5vw, 20px);
   margin-top: clamp(8px, 1.5vw, 10px);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
@@ -54,7 +58,7 @@ nav {
   justify-content: center;
   gap: clamp(16px, 4vw, 40px);
   background-color: #2F5233;
-  padding: clamp(6px, 1.5vw, 10px) 0;
+  padding: clamp(5px, 1vw, 8px) 0;
 }
 
 nav a {
