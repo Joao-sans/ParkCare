@@ -35,7 +35,7 @@ header h1 {
 }
 
 header p {
-  font-size: clamp(20px, 5vw, 20px);
+  font-size: clamp(18px, 4.5vw, 18px);
   margin-top: clamp(8px, 1.5vw, 10px);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
@@ -83,6 +83,12 @@ section {
 section h2 {
   margin-bottom: clamp(12px, 3vw, 20px);
   color: #2F5233;
+}
+
+@media (max-width: 600px) {
+  section h2 {
+    font-size: clamp(20px, 3vw, 24px);
+  }
 }
 
 /* Rodapé */
