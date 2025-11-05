@@ -10,10 +10,123 @@
 
   <!-- Link para CSS -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+  /* Estilos do pop-up do aplicativo */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+  }
+
+  .popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideIn 0.3s;
+  }
+
+  .popup-content h2 {
+    color: #2e7d32;
+  }
+
+  .qr {
+    width: 150px;
+    margin: 15px 0;
+  }
+
+  .download-btn {
+    display: inline-block;
+    white-space: nowrap;
+    background: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+    line-height: 1;
+  }
+
+  .download-btn:hover {
+    background: #388e3c;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(-30px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .qr {
+      display: none;
+    }
+  }
+  </style>
 </head>
 <body>
+  <!-- POPUP CONVITE APP -->
+  <div id="appPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="appPopupTitle">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <h2 id="appPopupTitle">Baixe nosso aplicativo!</h2>
+      <p>Tenha o ParkCare na palma da sua mao e ajude a cuidar dos parques publicos.</p>
+      <img src="imagens/QR_Code aplicativo.jpg" alt="QR Code do aplicativo" class="qr">
+      <a href="https://play.google.com/store/apps/details?id=seu.app.id" target="_blank" class="download-btn">Baixar agora</a>
+    </div>
+  </div>
 
-  <!-- Cabeçalho com imagem de fundo -->
+  <!-- Gaveta App -->
+  <div id="appDrawer" class="app-drawer" aria-hidden="true">
+    <button type="button" class="app-drawer-toggle" id="appDrawerToggle" aria-expanded="false" aria-controls="appDrawerPanel">
+      <span class="sr-only">Mostrar novamente as opções para baixar o aplicativo Park Care</span>
+      <span class="arrow-icon" aria-hidden="true">&#x25C0;</span>
+    </button>
+    <div class="app-drawer-panel" id="appDrawerPanel" role="region" aria-hidden="true" aria-label="Informacoes para baixar o aplicativo Park Care">
+      <div class="app-drawer-content">
+        <p>Download do app</p>
+        <img src="imagens/QR_Code aplicativo.jpg" alt="QR Code do aplicativo" class="app-drawer-qr">
+        <a href="https://play.google.com/store/apps/details?id=seu.app.id" target="_blank" class="download-btn download-btn--drawer">Baixar agora</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabecalho com imagem de fundo -->
   <header>
     <h1>
       <span class="highlight-hover" data-animated-text="Park Care">Park Care</span>
@@ -21,56 +134,361 @@
     <p>Em busca de um parque melhor</p>
   </header>
 
-  <!-- Navegação principal -->
+  <!-- Navegacao principal -->
   <nav>
-  <button id="menu-toggle" aria-label="Abrir menu">☰</button>
-<div class="menu-links">
-  <a href="#sobre"><span>Sobre</span></a>
-  <a href="#impacto"><span>Impacto</span></a>
-  <a href="#funciona"><span>Como Funciona</span></a>
-  <a href="#contato"><span>Contato</span></a>
-</div>
-</nav>
-  <!-- Seção Sobre -->
+    <button id="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+    <div class="menu-links">
+      <a class="nav-tab" href="#sobre"><span>Sobre</span></a>
+      <a class="nav-tab" href="#impacto"><span>Impacto</span></a>
+      <a class="nav-tab" href="#funciona"><span>Como Funciona</span></a>
+      <a class="nav-tab" href="#contato"><span>Fale conosco</span></a>
+      <button type="button" class="nav-tab nav-modal-trigger" data-modal-target="rankingModal"><span>Ranking</span></button>
+      <button type="button" class="nav-tab nav-modal-trigger" data-modal-target="partnersModal"><span>Parceiros</span></button>
+    </div>
+  </nav>
+
+  <!-- Secao Sobre -->
   <section id="sobre">
     <h2>Sobre o Projeto</h2>
     <p>
-              O Park Care é uma iniciativa dedicada ao cuidado e à revitalização dos parques urbanos, 
-              incentivando as comunidades dos parques a cuidar e preservá-los para que possam oferecer uma boa qualidade de vida e bem-estar. 
-              Através da tecnologia e engajamento social, buscamos transformar espaços verdes em locais de convivência saudáveis.
+      O Park Care e uma iniciativa dedicada ao cuidado e a revitalizacao dos parques urbanos, incentivando as comunidades a cuidar e preserva-los para que possam oferecer qualidade de vida e bem-estar. Atraves da tecnologia e do engajamento social, buscamos transformar espacos verdes em locais de convivio saudavel.
     </p>
   </section>
 
-  <!-- Seção Impacto -->
+  <!-- Secao Impacto -->
   <section id="impacto">
     <h2>Nosso Impacto</h2>
     <p>
-      +5.000 árvores plantadas | +100 parques monitorados | Toneladas de CO₂ capturadas | Comunidades engajadas
+      +5.000 arvores plantadas | +100 parques monitorados | Toneladas de CO2 capturadas | Comunidades engajadas
     </p>
   </section>
 
-  <!-- Seção Como Funciona -->
+  <!-- Secao Como Funciona -->
   <section id="funciona">
     <h2>Como Funciona</h2>
     <p>
-      Através de nosso site e aplicativo, usuários podem denunciar problemas, acompanhar ações de reflorestamento, 
-      adotar áreas verdes e contribuir com iniciativas sustentáveis. 
-      Empresas e prefeituras também podem se tornar parceiras.
+      Atraves de nosso site e aplicativo, usuarios podem denunciar problemas, acompanhar ações de reflorestamento, adotar áreas verdes e contribuir com iniciativas sustentaveis. Empresas e prefeituras tambem podem se tornar parceiras.
     </p>
   </section>
 
-  <!-- Seção Contato -->
+  <!-- Secao Contato -->
   <section id="contato">
     <h2>Fale Conosco</h2>
     <p>Email: contato@parkcare.com</p>
     <p>Instagram: @parkcare</p>
   </section>
 
-  <!-- Rodapé -->
+  <!-- Modal Ranking -->
+  <div id="rankingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="rankingTitle">
+    <div class="modal-content">
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+      <h2 id="rankingTitle">Melhores parques</h2>
+      <p>Confira os parques mais bem avaliados e com mais ações voluntarias registradas pela comunidade no ParkCare.</p>
+      <div class="ranking-grid" role="list">
+        <article class="ranking-card" role="listitem">
+          <figure class="ranking-card__media">
+            <div class="carousel" data-carousel>
+              <button type="button" class="carousel__control carousel__control--prev" aria-label="Ver imagem anterior">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+              </button>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1622050956578-94fd044a0ada?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1622050956578-94fd044a0ada?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Vista ampla do Parque de Boston com lago central e gramados extensos"
+                    data-caption="Fim de tarde no Parque de Boston com o lago refletindo o horizonte da cidade."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1578687802019-a92fbc9b206b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1031"
+                    data-lightbox-src="https://images.unsplash.com/photo-1578687802019-a92fbc9b206b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1031"
+                    alt="Trilha arborizada em Boston com pessoas caminhando"
+                    data-caption="Trilhas sombreadas convidam caminhadas e piqueniques no Parque de Boston."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Pedalinhos coloridos em lago cercado por vegetacao"
+                    data-caption="Voluntarios cuidam do lago principal, garantindo aguas cristalinas o ano todo."
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button type="button" class="carousel__control carousel__control--next" aria-label="Ver proxima imagem">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="ranking-card__badge">1&ordm; lugar</figcaption>
+          </figure>
+          <div class="ranking-card__body">
+            <h3>Parque de Boston</h3>
+            <p class="ranking-card__metric">128 ações concluidas</p>
+            <div class="ranking-card__rating" aria-label="Avaliação 4.9 de 5">
+              <div class="rating-stars" aria-hidden="true">
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--half">&#9733;</span>
+              </div>
+              <span class="rating-score">4.9</span>
+            </div>
+            <p class="ranking-card__description">
+              Parque bem arejado, espaçoso e completo, com trilhas, lago, áreas de lazer e eventos culturais regulares.
+            </p>
+          </div>
+        </article>
+        <article class="ranking-card" role="listitem">
+          <figure class="ranking-card__media">
+            <div class="carousel" data-carousel>
+              <button type="button" class="carousel__control carousel__control--prev" aria-label="Ver imagem anterior">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+              </button>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Vista aerea do Parque Verde Vida com extensa area verde e ciclovia"
+                    data-caption="Ciclovias conectam cada cantinho verde do Parque Verde Vida."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Voluntarios plantando mudas no Parque Verde Vida"
+                    data-caption="Mutiroes semanais garantem novas mudas e cuidado constante com o solo."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Jovens reunidos em pracinha arborizada do Parque Verde Vida"
+                    data-caption="Eventos comunitarios ocupam as pracas arborizadas do Parque Verde Vida."
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button type="button" class="carousel__control carousel__control--next" aria-label="Ver proxima imagem">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="ranking-card__badge">2&ordm; lugar</figcaption>
+          </figure>
+          <div class="ranking-card__body">
+            <h3>Parque Verde Vida</h3>
+            <p class="ranking-card__metric">97 ações concluidas</p>
+            <div class="ranking-card__rating" aria-label="Avaliação 4.7 de 5">
+              <div class="rating-stars" aria-hidden="true">
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--half">&#9733;</span>
+              </div>
+              <span class="rating-score">4.7</span>
+            </div>
+            <p class="ranking-card__description">
+              Oficinas de compostagem, corredores verdes e mutiroes de plantio semanal liderados pelos vizinhos.
+            </p>
+          </div>
+        </article>
+        <article class="ranking-card" role="listitem">
+          <figure class="ranking-card__media">
+            <div class="carousel" data-carousel>
+              <button type="button" class="carousel__control carousel__control--prev" aria-label="Ver imagem anterior">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+              </button>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Lago espelhado e pedalinhos coloridos no Parque Lago Azul"
+                    data-caption="Pedalinhos coloridos e jardineiras flutuantes preservam o charme do Lago Azul."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Passarela de madeira contornando o lago no Parque Lago Azul"
+                    data-caption="Passarelas de madeira levam visitantes aos pontos de observacao da fauna."
+                    loading="lazy"
+                  />
+                  <img
+                    class="carousel__slide"
+                    src="https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+                    data-lightbox-src="https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&amp;fit=crop&amp;w=1600&amp;q=90"
+                    alt="Deck de observacao com cercas brancas no Parque Lago Azul"
+                    data-caption="Decks panoramicos exibem o trabalho dos voluntarios na revitalizacao do lago."
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button type="button" class="carousel__control carousel__control--next" aria-label="Ver proxima imagem">
+                <svg class="carousel__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+              </button>
+            </div>
+            <figcaption class="ranking-card__badge">3&ordm; lugar</figcaption>
+          </figure>
+          <div class="ranking-card__body">
+            <h3>Parque Lago Azul</h3>
+            <p class="ranking-card__metric">84 ações concluidas</p>
+            <div class="ranking-card__rating" aria-label="Avaliação 4.5 de 5">
+              <div class="rating-stars" aria-hidden="true">
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--filled">&#9733;</span>
+                <span class="rating-star rating-star--half">&#9733;</span>
+              </div>
+              <span class="rating-score">4.5</span>
+            </div>
+            <p class="ranking-card__description">
+              Programas de limpeza do lago e circuitos de educacao ambiental para escolas da regiao.
+            </p>
+          </div>
+        </article>
+      </div>
+      <p class="modal-note">O ranking e atualizado mensalmente com base nas atividades registradas.</p>
+    </div>
+  </div>
+
+  <div id="rankingLightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Galeria de imagens dos parques">
+    <div class="lightbox__content">
+      <button type="button" class="lightbox__close" data-lightbox-close aria-label="Fechar visualizacao">&times;</button>
+      <button type="button" class="lightbox__control lightbox__control--prev" data-lightbox-prev aria-label="Ver imagem anterior">
+        <svg class="lightbox__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+      </button>
+      <figure class="lightbox__figure">
+        <img class="lightbox__image" src="" alt="" />
+        <figcaption class="lightbox__caption"></figcaption>
+      </figure>
+      <button type="button" class="lightbox__control lightbox__control--next" data-lightbox-next aria-label="Ver proxima imagem">
+        <svg class="lightbox__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Parceiros -->
+  <div id="partnersModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="partnersTitle">
+    <div class="modal-content">
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+      <h2 id="partnersTitle">Parceiros Park Care</h2>
+      <p>Nossos parceiros apoiam as ações de preservação e eventos comunitarios nos parques.</p>
+      <ul class="modal-list">
+        <li>EcoVida Brasil &mdash; campanhas educativas e oficinas sustentaveis</li>
+        <li>Prefeitura Municipal &mdash; apoio logistico e manutencao de áreas verdes</li>
+        <li>Instituto Verdejar &mdash; monitoramento da biodiversidade urbana</li>
+        <li>Rede Local de Voluntarios &mdash; mutiroes semanais de limpeza e plantio</li>
+      </ul>
+      <p class="modal-note">Quer se juntar? Escreva para <a href="mailto:parcerias@parkcare.com">parcerias@parkcare.com</a> e vamos conversar.</p>
+    </div>
+  </div>
+
+  <!-- Rodape -->
   <footer>
     <p>&copy; 2025 Park Care. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+  (() => {
+    const appPopup = document.getElementById('appPopup');
+    const closeButton = document.getElementById('closePopup');
+    const appDrawer = document.getElementById('appDrawer');
+    const appDrawerToggle = document.getElementById('appDrawerToggle');
+    const appDrawerPanel = document.getElementById('appDrawerPanel');
+
+    const setDrawerExpanded = (expanded) => {
+      if (!appDrawer) return;
+      appDrawer.classList.toggle('is-expanded', expanded);
+      if (appDrawerToggle) {
+        appDrawerToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      }
+      if (appDrawerPanel) {
+        appDrawerPanel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      }
+    };
+
+    const showDrawer = () => {
+      if (!appDrawer) return;
+      appDrawer.classList.add('is-visible');
+      appDrawer.setAttribute('aria-hidden', 'false');
+      setDrawerExpanded(false);
+    };
+
+    const hidePopup = () => {
+      if (appPopup) {
+        appPopup.style.display = 'none';
+      }
+      showDrawer();
+    };
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (appPopup) {
+          appPopup.style.display = 'flex';
+        }
+        if (appDrawer) {
+          appDrawer.classList.remove('is-visible');
+          appDrawer.setAttribute('aria-hidden', 'true');
+        }
+        if (appDrawerPanel) {
+          appDrawerPanel.setAttribute('aria-hidden', 'true');
+        }
+      }, 4000);
+    });
+
+    if (closeButton) {
+      closeButton.addEventListener('click', hidePopup);
+    }
+
+    window.addEventListener('click', (event) => {
+      if (appPopup && event.target === appPopup) {
+        hidePopup();
+      }
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && appPopup && appPopup.style.display === 'flex') {
+        hidePopup();
+      }
+    });
+
+    if (appDrawerToggle) {
+      appDrawerToggle.addEventListener('click', () => {
+        if (!appDrawer) return;
+        const expanded = appDrawer.classList.contains('is-expanded');
+        setDrawerExpanded(!expanded);
+      });
+    }
+  })();
+  </script>
+
   <!-- Link para JS -->
   <script src="js/script.js"></script>
 </body>
 </html>
+
